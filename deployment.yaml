@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: kubernetes-deployment
   labels:
-    app: nginx
+    app: kubernetes
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: kubernetes
   template:
     metadata:
       labels:
-        app: nginx
+        app: kubernetes
     spec:
       containers:
-      - name: nginx
-        image: docker pull dcurrotto/nginx-angular
+      - name: kubernetes
+        image: docker pull dcurrotto/kubernetes
         ports:
         - containerPort: 80
 
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: kubernetes-service
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: nginx
+    app: kubernetes
