@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: kubernetes
-        image: dcurrotto/kubernetes
+        image: dcurrotto/kubernetes:18
         resources:
           requests:
             cpu: 100m
