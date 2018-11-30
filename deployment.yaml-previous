@@ -1,7 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kubernetes
+  name: kubernetes-deployment
+  labels:
+    app: kubernetes
 spec:
   replicas: 1
   selector:
@@ -14,24 +16,15 @@ spec:
     spec:
       containers:
       - name: kubernetes
-        image: dcurrotto/kubernetes
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 250m
-            memory: 256Mi
+        image: docker pull dcurrotto/kubernetes
         ports:
         - containerPort: 80
-        env:
-        - name: REDIS
-          value: "dans-k8s-demo"
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubernetes
+  name: kubernetes-service
 spec:
   type: LoadBalancer
   ports:
